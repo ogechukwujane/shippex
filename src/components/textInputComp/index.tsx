@@ -5,16 +5,20 @@ import {styles} from './styles';
 type ITextInput = {
   value: string;
   onChangeText: (text: string) => void;
+  label: string;
+  errorMessage?: string;
 };
 
 interface InputProp extends ITextInput {
-  inputType: 'password' | 'text';
+  inputType?: 'password' | 'text';
 }
 
 export const TextInputComp: FC<InputProp> = ({
   value,
   onChangeText,
   inputType,
+  label,
+  errorMessage,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -42,32 +46,40 @@ export const TextInputComp: FC<InputProp> = ({
     color: '#A7A3B3',
     transform: [
       {
-        translateY: 17,
+        translateY: 14,
       },
     ],
   };
 
   return (
-    <View style={[styles.inputWrapper, isFocused && styles.focusInput]}>
-      <Animated.Text
-        style={[styles.label, !isFocused && !value && labelDynamicStyles]}>
-        Label
-      </Animated.Text>
-      <View style={styles.row}>
-        <TextInput
-          value={value}
-          onChangeText={onChangeText}
-          secureTextEntry={inputType === 'password' ? true : false}
-          style={[styles.input]}
-          onFocus={onTextInputFocus}
-          onBlur={onTextInputBlur}
-        />
+    <View>
+      <View style={[styles.inputWrapper, isFocused && styles.focusInput]}>
+        <Animated.Text
+          style={[styles.label, !isFocused && !value && labelDynamicStyles]}>
+          {label}
+        </Animated.Text>
+        <View style={styles.row}>
+          <TextInput
+            value={value}
+            onChangeText={onChangeText}
+            secureTextEntry={inputType === 'password' ? true : false}
+            style={[styles.input]}
+            onFocus={onTextInputFocus}
+            onBlur={onTextInputBlur}
+          />
+        </View>
       </View>
+      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
     </View>
   );
 };
 
-export const UrlTextInputComp: FC<ITextInput> = ({value, onChangeText}) => {
+export const UrlTextInputComp: FC<ITextInput> = ({
+  value,
+  onChangeText,
+  label,
+  errorMessage,
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const animationValue = useRef(new Animated.Value(0)).current;
@@ -94,32 +106,35 @@ export const UrlTextInputComp: FC<ITextInput> = ({value, onChangeText}) => {
     color: '#A7A3B3',
     transform: [
       {
-        translateY: 17,
+        translateY: 14,
       },
     ],
   };
 
   return (
-    <Pressable style={[styles.inputWrapper, isFocused && styles.focusInput]}>
-      <View style={styles.row}>
-        {(isFocused || value) && (
-          <>
-            <Text style={styles.grayText}>https://</Text>
-            <View style={styles.line} />
-          </>
-        )}
-        <TextInput
-          value={value}
-          onChangeText={onChangeText}
-          style={[styles.input]}
-          onFocus={onTextInputFocus}
-          onBlur={onTextInputBlur}
-        />
-      </View>
-      <Animated.Text
-        style={[styles.label, !isFocused && !value && labelDynamicStyles]}>
-        Label
-      </Animated.Text>
-    </Pressable>
+    <View>
+      <Pressable style={[styles.inputWrapper, isFocused && styles.focusInput]}>
+        <Animated.Text
+          style={[styles.label, !isFocused && !value && labelDynamicStyles]}>
+          {label}
+        </Animated.Text>
+        <View style={styles.row}>
+          {(isFocused || value) && (
+            <>
+              <Text style={styles.grayText}>https://</Text>
+              <View style={styles.line} />
+            </>
+          )}
+          <TextInput
+            value={value}
+            onChangeText={onChangeText}
+            style={[styles.input]}
+            onFocus={onTextInputFocus}
+            onBlur={onTextInputBlur}
+          />
+        </View>
+      </Pressable>
+      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
+    </View>
   );
 };

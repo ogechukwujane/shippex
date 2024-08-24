@@ -1,16 +1,18 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {
-  Animated,
-  Dimensions,
-  Modal,
-  PanResponder,
-  Text,
-  View,
-} from 'react-native';
+import React, {FC, useEffect, useRef} from 'react';
+import {Animated, Dimensions, Modal, PanResponder, View} from 'react-native';
 import {styles} from './styles';
 
-export const BottomSheet = () => {
-  const [showModal, setShowModal] = useState(true);
+interface IBottomSheet {
+  visible: boolean;
+  onRequestClose: () => void;
+  children: React.ReactNode;
+}
+
+export const BottomSheet: FC<IBottomSheet> = ({
+  visible,
+  onRequestClose,
+  children,
+}) => {
   const screenHeight = Dimensions.get('screen').height;
   const panY = useRef(new Animated.Value(screenHeight)).current;
 
@@ -31,7 +33,7 @@ export const BottomSheet = () => {
     outputRange: [0, 0, 1],
   });
 
-  const handleDismiss = () => closeAnim.start(() => setShowModal(false));
+  const handleDismiss = () => closeAnim.start(onRequestClose);
 
   useEffect(() => {
     resetPositionAnim.start();
@@ -55,10 +57,10 @@ export const BottomSheet = () => {
 
   return (
     <Modal
-      animationType="fade"
-      visible={showModal}
+      animationType="slide"
+      visible={visible}
       transparent
-      onRequestClose={() => setShowModal(false)}>
+      onRequestClose={onRequestClose}>
       <View style={styles.overlay}>
         <Animated.View
           style={{
@@ -69,12 +71,7 @@ export const BottomSheet = () => {
           <View style={styles.sliderIndicatorRow}>
             <View style={styles.sliderIndicator} />
           </View>
-          <Text>kkkkkk</Text>
-          <Text>kkkkkk</Text>
-          <Text>kkkkkk</Text>
-          <Text>kkkkkk</Text>
-          <Text>kkkkkk</Text>
-          <Text>kkkkkk</Text>
+          {children}
         </Animated.View>
       </View>
     </Modal>

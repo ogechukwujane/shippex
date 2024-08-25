@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#F4F2F8',
     borderRadius: 10,
     marginVertical: 10,
     overflow: 'hidden',
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10,
+    gap: 12,
     backgroundColor: '#F4F2F8',
   },
   checkbox: {
@@ -64,11 +64,13 @@ export const styles = StyleSheet.create({
     color: '#3F395C',
   },
   statusCard: {
-    paddingVertical: 3,
-    paddingHorizontal: 5,
+    fontSize: 11,
+    fontWeight: 500,
+    paddingVertical: 4,
+    paddingHorizontal: 6,
     borderRadius: 5,
-    backgroundColor: '#15043830',
-    borderWidth: 1,
+    color: '#58536E',
+    borderWidth: 1.2,
     borderColor: '#fff',
     overflow: 'hidden',
   },
@@ -98,12 +100,12 @@ export const styles = StyleSheet.create({
     gap: 5,
   },
   cardContent: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 12,
     paddingVertical: 12,
     gap: 20,
     borderTopWidth: 2,
-    borderTopColor: 'red',
-    backgroundColor: '#F4F2F850',
+    borderTopColor: '#fff',
+    backgroundColor: '#ffffff70',
   },
   cardFlex: {
     flexDirection: 'row',

@@ -1,33 +1,40 @@
 import React, {useState} from 'react';
-import {Pressable, Text, View} from 'react-native';
+import {Image, Pressable, Text, View} from 'react-native';
 import {styles} from './styles';
-import {
-  BottomSheet,
-  ButtonComp,
-  TextInputComp,
-  UrlTextInputComp,
-} from '../../components';
+import {BottomSheet, ButtonComp, TextInputComp} from '../../components';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import {useFormik} from 'formik';
 import {LoginValidation} from './validation';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationParams} from '../../navigation/type';
+import {useLoginMutation} from '../../store/authApi';
 
 export const LoginScreen = () => {
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation<NavigationParams>();
+  const [login, {isLoading}] = useLoginMutation();
 
   const onSubmit = () => {
-    setShowModal(false);
-    navigation.navigate('BottomTabs', {screen: 'HomeScreen'});
+    const formData = new FormData();
+    formData.append('usr', values.email);
+    formData.append('pwd', values.password);
+    login(formData)
+      .unwrap()
+      .then(res => {
+        setShowModal(false);
+        navigation.navigate('BottomTabs', {
+          screen: 'HomeScreen',
+          params: {userName: res.full_name},
+        });
+      })
+      .catch(err => console.log('err', err));
   };
 
   const {values, touched, errors, handleSubmit, handleChange} = useFormik({
     initialValues: {
-      url: '',
-      email: '',
-      password: '',
+      email: 'test@brandimic.com',
+      password: 'testy123@',
     },
     validationSchema: LoginValidation,
     onSubmit,
@@ -36,7 +43,12 @@ export const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <View />
-      <Text style={styles.iconWrap}>HomeScreen</Text>
+      <View style={styles.iconWrap}>
+        <Image
+          source={require('../../../assets/icons/logo.png')}
+          style={styles.logo}
+        />
+      </View>
       <View style={styles.buttonWrap}>
         <ButtonComp
           text="Login"
@@ -63,12 +75,6 @@ export const LoginScreen = () => {
               </Text>
             </View>
             <View style={styles.inputWrap}>
-              <UrlTextInputComp
-                label="URL"
-                value={values.url}
-                onChangeText={handleChange('url')}
-                errorMessage={touched.url ? errors.url : ''}
-              />
               <TextInputComp
                 label="Username / Email"
                 value={values.email}
@@ -85,9 +91,9 @@ export const LoginScreen = () => {
             </View>
           </View>
           <ButtonComp
-            text="Login"
+            text={isLoading ? 'Loading...' : 'Login'}
             onPress={handleSubmit}
-            disabled={!values.email || !values.url || !values.password}
+            disabled={!values.email || !values.password}
           />
         </View>
       </BottomSheet>

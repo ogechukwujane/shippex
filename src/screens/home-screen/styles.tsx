@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingHorizontal: 20,
     gap: 20,
-    paddingTop: 50,
+    paddingTop: 55,
   },
   flex: {
     flexDirection: 'row',
@@ -135,11 +135,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 10,
     gap: 10,
-    height: 'auto',
+    height: 250,
   },
   modalGrid: {
     flex: 1,
-    gap: 5,
+    gap: 15,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
@@ -159,6 +159,33 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#F4F2F8',
     backgroundColor: '#F4F2F8',
+  },
+  selectedCard: {
+    borderWidth: 1,
+    borderColor: '#6E91EC',
+  },
+  cardContent: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 50,
+    backgroundColor: '#fff',
+  },
+  notfound: {
+    width: '100%',
+    height: 200,
+    objectFit: 'contain',
+  },
+  activeColor: {
+    color: '#2F50C1',
+  },
+  boldText: {
+    fontSize: 18,
+    fontWeight: 700,
+    color: '#000',
   },
 });

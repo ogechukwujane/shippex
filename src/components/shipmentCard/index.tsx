@@ -9,6 +9,7 @@ import {
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
 import {faWhatsapp} from '@fortawesome/free-brands-svg-icons';
+import {PackageIcon} from '../../../assets/svgs';
 
 interface IButtonComp {}
 
@@ -20,7 +21,9 @@ export const ShipmentCardComp = () => {
         <Pressable style={styles.checkbox}>
           <FontAwesomeIcon icon={faCheck} />
         </Pressable>
-        <View style={styles.iconWrap}></View>
+        <View style={styles.iconWrap}>
+          <PackageIcon />
+        </View>
         <View style={styles.textCol}>
           <Text style={[styles.paragraph, styles.header]}>AWB</Text>
           <Text style={styles.id}>41785691423</Text>

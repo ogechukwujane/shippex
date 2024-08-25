@@ -21,6 +21,7 @@ export const TextInputComp: FC<InputProp> = ({
   errorMessage,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
+  const textInputRef = useRef<TextInput | null>(null);
 
   const animationValue = useRef(new Animated.Value(0)).current;
 
@@ -51,9 +52,17 @@ export const TextInputComp: FC<InputProp> = ({
     ],
   };
 
+  const focusTextInput = () => {
+    if (textInputRef.current) {
+      textInputRef.current.focus();
+    }
+  };
+
   return (
     <View>
-      <View style={[styles.inputWrapper, isFocused && styles.focusInput]}>
+      <Pressable
+        style={[styles.inputWrapper, isFocused && styles.focusInput]}
+        onPress={focusTextInput}>
         <Animated.Text
           style={[styles.label, !isFocused && !value && labelDynamicStyles]}>
           {label}
@@ -67,9 +76,10 @@ export const TextInputComp: FC<InputProp> = ({
             onFocus={onTextInputFocus}
             onBlur={onTextInputBlur}
             autoCapitalize="none"
+            ref={textInputRef}
           />
         </View>
-      </View>
+      </Pressable>
       {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
     </View>
   );

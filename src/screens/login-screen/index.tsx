@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Image, Pressable, Text, View} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {Animated, Image, Pressable, Text, View} from 'react-native';
 import {styles} from './styles';
 import {BottomSheet, ButtonComp, TextInputComp} from '../../components';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -14,6 +14,7 @@ export const LoginScreen = () => {
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation<NavigationParams>();
   const [login, {isLoading}] = useLoginMutation();
+  const fadeAnim = useRef(new Animated.Value(1)).current;
 
   const onSubmit = () => {
     const formData = new FormData();
@@ -22,6 +23,7 @@ export const LoginScreen = () => {
     login(formData)
       .unwrap()
       .then(res => {
+        fadeOut();
         setShowModal(false);
         navigation.navigate('BottomTabs', {
           screen: 'HomeScreen',
@@ -33,15 +35,23 @@ export const LoginScreen = () => {
 
   const {values, touched, errors, handleSubmit, handleChange} = useFormik({
     initialValues: {
-      email: 'test@brandimic.com',
-      password: 'testy123@',
+      email: '',
+      password: '',
     },
     validationSchema: LoginValidation,
     onSubmit,
   });
 
+  const fadeOut = () => {
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container]}>
       <View />
       <View style={styles.iconWrap}>
         <Image
@@ -59,7 +69,13 @@ export const LoginScreen = () => {
       <BottomSheet
         visible={showModal}
         onRequestClose={() => setShowModal(false)}>
-        <View style={styles.loginContent}>
+        <Animated.View
+          style={[
+            styles.loginContent,
+            {
+              opacity: fadeAnim,
+            },
+          ]}>
           <View style={styles.section}>
             <Pressable
               style={styles.closeWrap}
@@ -95,8 +111,8 @@ export const LoginScreen = () => {
             onPress={handleSubmit}
             disabled={!values.email || !values.password}
           />
-        </View>
+        </Animated.View>
       </BottomSheet>
-    </View>
+    </Animated.View>
   );
 };

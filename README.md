@@ -1,79 +1,65 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# SHIPPEX
 
-# Getting Started
+This project was crafted using
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+- React Native cli and
+- Typescript
 
-## Step 1: Start the Metro Server
+## Installation:
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+To get the app running on your emulator, firstly
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- Clone the repository and navigate into the project directory,
 
-```bash
-# using npm
-npm start
+  ```
+  cd project-directory-name
+  ```
 
-# OR using Yarn
-yarn start
-```
+- Run yarn to install all dependency used,
 
-## Step 2: Start your Application
+  ```
+  yarn
+  ```
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+- For MacBook users, Run the code below to install all dependency used on ios,
 
-### For Android
+  ```
+  cd ios
+  pod install
+  cd ..
+  ```
 
-```bash
-# using npm
-npm run android
+- To get the app running on your emulator, run the yarn command below and enter `i` to open on ios emulator or `a` to open on android emulator.
 
-# OR using Yarn
-yarn android
-```
+  ```
+  yarn run start
+  ```
 
-### For iOS
+The app is up and running.
 
-```bash
-# using npm
-npm run ios
+## Folder Structure:
 
-# OR using Yarn
-yarn ios
-```
+All the working file of this app can be found in the `src` folder.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+- The `baseUrl(folder)` where the app base url was stated.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+- The `assets(folder)` which consist of Icon(file) and image(file), It can be found outside the `src(folder)`.
 
-## Step 3: Modifying your App
+- The `component(folder)` which consist of all reusable component used around the app.
 
-Now that you have successfully run the app, let's modify it.
+- The `navigation(folder)` which consist of the routing setup.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+- The `screens(folder)` which consist of all the screens of the app.
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- The `store(folder)` which contains all the api configurations and setup.
 
-## Congratulations! :tada:
+- The `utils(folder)` which contains all reusable functions used on the app.
 
-You've successfully run and modified your React Native App. :partying_face:
+` ** All file within any folder must be exported through it's respective index file **`
 
-### Now what?
+## Login Credentials
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+Login using the credentials bellow.
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+          * email: 'test@brandimic.com',
+          * password: 'testy123@',

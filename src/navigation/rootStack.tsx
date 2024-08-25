@@ -14,10 +14,14 @@ const RootStack = createStackNavigator<RootStackParams>();
 export const RootNavigation = () => {
   return (
     <RootStack.Navigator
-      screenOptions={{headerStatusBarHeight: 0, headerShown: false}}>
+      screenOptions={{
+        headerStatusBarHeight: 0,
+        headerShown: false,
+        animationEnabled: false,
+      }}>
+      <RootStack.Screen name="SplashScreen" component={SplashScreen} />
       <RootStack.Screen name="LoginScreen" component={LoginScreen} />
       <RootStack.Screen name="BottomTabs" component={BottomTabs} />
-      <RootStack.Screen name="SplashScreen" component={SplashScreen} />
     </RootStack.Navigator>
   );
 };

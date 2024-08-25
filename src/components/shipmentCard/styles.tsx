@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    margin: 10,
+    marginVertical: 10,
     overflow: 'hidden',
   },
   cardWrap: {
@@ -30,7 +30,6 @@ export const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 10,
-    backgroundColor: '#cc1414',
   },
   textCol: {
     flex: 1,

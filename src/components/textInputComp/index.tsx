@@ -66,6 +66,7 @@ export const TextInputComp: FC<InputProp> = ({
             style={[styles.input]}
             onFocus={onTextInputFocus}
             onBlur={onTextInputBlur}
+            autoCapitalize="none"
           />
         </View>
       </View>
@@ -131,6 +132,7 @@ export const UrlTextInputComp: FC<ITextInput> = ({
             style={[styles.input]}
             onFocus={onTextInputFocus}
             onBlur={onTextInputBlur}
+            autoCapitalize="none"
           />
         </View>
       </Pressable>

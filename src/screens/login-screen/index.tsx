@@ -11,11 +11,17 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import {useFormik} from 'formik';
 import {LoginValidation} from './validation';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationParams} from '../../navigation/type';
 
 export const LoginScreen = () => {
   const [showModal, setShowModal] = useState(false);
+  const navigation = useNavigation<NavigationParams>();
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    setShowModal(false);
+    navigation.navigate('BottomTabs', {screen: 'HomeScreen'});
+  };
 
   const {values, touched, errors, handleSubmit, handleChange} = useFormik({
     initialValues: {

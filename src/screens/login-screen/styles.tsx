@@ -10,13 +10,17 @@ export const styles = StyleSheet.create({
     paddingVertical: 40,
   },
   iconWrap: {
+    width: 207,
     height: 36,
-    backgroundColor: 'green',
+  },
+  logo: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain',
   },
   buttonWrap: {
     width: '100%',
     height: 56,
-    backgroundColor: 'green',
   },
   loginContent: {
     height: '95%',

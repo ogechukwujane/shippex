@@ -57,7 +57,7 @@ export const BottomSheet: FC<IBottomSheet> = ({
 
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       visible={visible}
       transparent
       onRequestClose={onRequestClose}>

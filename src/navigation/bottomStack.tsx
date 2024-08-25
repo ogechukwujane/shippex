@@ -1,9 +1,9 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {HomeScreen} from '../screens';
+import {HomeScreen, ProfileScreen, ScanScreen, WalletScreen} from '../screens';
 import {HomeIcon, ProfileIcon, ScanIcon, WalletIcon} from '../../assets/svgs';
 
 export type BottomTabParams = {
-  HomeScreen: undefined;
+  HomeScreen: {userName: string};
   ScanScreen: undefined;
   WalletScreen: undefined;
   ProfileScreen: undefined;
@@ -20,8 +20,8 @@ export const BottomTabs = () => {
         tabBarActiveTintColor: '#5B4CCC',
         tabBarInactiveTintColor: '#A7A3B3',
         tabBarStyle: {
-          height: 60,
-          paddingBottom: 8,
+          height: 80,
+          paddingBottom: 25,
           paddingTop: 5,
         },
       }}>
@@ -37,7 +37,7 @@ export const BottomTabs = () => {
       />
       <Tab.Screen
         name="ScanScreen"
-        component={HomeScreen}
+        component={ScanScreen}
         options={{
           tabBarLabel: 'Scan',
           tabBarIcon: ({focused}) => (
@@ -47,7 +47,7 @@ export const BottomTabs = () => {
       />
       <Tab.Screen
         name="WalletScreen"
-        component={HomeScreen}
+        component={WalletScreen}
         options={{
           tabBarLabel: 'Wallet',
           tabBarIcon: ({focused}) => (
@@ -57,7 +57,7 @@ export const BottomTabs = () => {
       />
       <Tab.Screen
         name="ProfileScreen"
-        component={HomeScreen}
+        component={ProfileScreen}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({focused}) => (
